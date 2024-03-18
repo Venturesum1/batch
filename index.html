@@ -16,13 +16,13 @@
                 "data": ["1", "334", "4", "5", "2", "4", "92", "A", "R", "B", "A", "ABCD", "DOE"]
             };
 
-            const response = await fetch('http://localhost:3000/bfhl', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
+          const response = await fetch('http://localhost:3000/bfhl', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          });
 
             const responseData = await response.json();
 
