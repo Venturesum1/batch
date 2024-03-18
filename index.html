@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Webview Example</title>
+    <title>Express Server Example</title>
 </head>
 <body>
-    <h1>Webview Example</h1>
+    <h1>Express Server Example</h1>
 
-    <button onclick="getData()">Get Data</button>
+    <button onclick="postData()">Post Data</button>
 
     <div id="response"></div>
 
     <script>
-        async function getData() {
+        async function postData() {
             const data = {
                 "data": ["1", "334", "4", "5", "2", "4", "92", "A", "R", "B", "A", "ABCD", "DOE"]
             };
 
-          const response = await fetch('http://localhost:3000/bfhl', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-          });
+            const response = await fetch('http://localhost:3000/info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
 
             const responseData = await response.json();
 
