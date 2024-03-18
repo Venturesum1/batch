@@ -1,33 +1,40 @@
-
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
-
-const generateResponse = (data) => {
-    const response = {
-        "is_success": true,
-        "user_id": "john_doe_17091999",
-        "email": "john@xyz.com",
-        "roll_number": "ABCD123",
-        "odd_numbers": data.filter(num => num % 2 !== 0 && !isNaN(num)),
-        "even_numbers": data.filter(num => num % 2 === 0 && !isNaN(num)),
-        "alphabets": data.filter(item => typeof item === 'string' && item.match(/^[A-Za-z]+$/)).map(item => item.toUpperCase())
-    };
-
-    return response;
-};
-
-app.post('/bfhl', (req, res) => {
-  const data = req.body.data;
-  console.log('Received data:', data); 
-  const response = generateResponse(data);
-  console.log('Response sent:', response); 
-  res.json(response);
+app.get("/", (req, res) => { 
+  res.send("welcome soumysis");
+});
+app.get("/info", (req, res) => {
+  console.log("data", req.query); 
+  res.send("welcome bimal");
+}); 
+app.post("/info", (req, res) => {
+  const userdata = req.body;
+  let even_numbers = [];
+  let odd_numbers = [];
+  let alphabets = [];
+  userdata.forEach((element) => {
+    if (parseInt(element) % 2 == 0) {
+      even_numbers.push(element);
+    } else if (parseInt(element) % 2 == 1) {
+      odd_numbers.push(element);
+    } else if (element >= "a" && element <= "z") {
+      alphabets.push(element.toUppercase());
+    }
+  });
+  return res.status(200).send({
+    is_success: true,
+    user_id: "john_doe17091999",
+    email: "john@xyz.com",
+    roll_no: "ABCD123",
+    even: even,
+    odd: odd,
+    alpha: alpha,
+  });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on ${port}`);
+app.listen(3000, () => {
+  console.log("server started port no 3000");
 });
