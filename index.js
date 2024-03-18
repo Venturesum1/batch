@@ -21,12 +21,11 @@ const generateResponse = (data) => {
 };
 
 app.post('/bfhl', (req, res) => {
-    console.log('Data received:', req.body.data);
-    const data = req.body.data;
-
-    const response = generateResponse(data);
-
-    res.json(response);
+  const data = req.body.data;
+  console.log('Received data:', data); 
+  const response = generateResponse(data);
+  console.log('Response sent:', response); 
+  res.json(response);
 });
 
 app.listen(port, () => {
